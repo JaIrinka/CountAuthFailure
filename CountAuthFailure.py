@@ -9,7 +9,8 @@ def count_auth_failure():
     auth_log.add_match("SYSLOG_FACILITY=10", "PRIORITY=5")
     auth_log.seek_realtime(start_time)
     for entry in auth_log:
-        if entry['MESSAGE'].find('authentication failure') >= 0:
+        if entry['MESSAGE'].find('authentication failure') >= 0 and \
+           entry['MESSAGE'].find('sshd:auth') == -1:
             count+=1
 
     return count

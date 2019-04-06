@@ -10,7 +10,8 @@ class CountAuthFailureTest(TestCase):
         journal.__iter__ = mock.Mock(return_value=iter([
             {'MESSAGE': 'user: Executing command'}, 
             {'MESSAGE': 'Registered Authentication Agent for unix-session:1'},
-            {'MESSAGE': 'pam_unix(gdm-password:auth): authentication failure; logname='}
+            {'MESSAGE': 'pam_unix(gdm-password:auth): authentication failure; '},
+            {'MESSAGE': 'pam_unix(sshd:auth): authentication failure; '}
         ]))
 
         with mock.patch('CountAuthFailure.Reader', return_value=journal):
